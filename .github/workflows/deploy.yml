@@ -3,7 +3,7 @@ name: Deploy Forge App to Jira
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
