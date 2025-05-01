@@ -22,7 +22,9 @@ jobs:
         run: npm install -g @forge/cli
 
       - name: Authenticate with Forge
-        run: echo "${{ secrets.FORGE_CLI_AUTH_TOKEN }}" | forge login --token "${{ secrets.FORGE_CLI_AUTH_TOKEN }}"
+        run: |
+          echo "${{ secrets.FORGE_CLI_AUTH_TOKEN }}" > token.txt
+          forge login --token < token.txt
 
       - name: Deploy Forge App
         run: forge deploy --non-interactive
