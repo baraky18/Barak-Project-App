@@ -4,7 +4,7 @@ modules:
       resource: main
       resolver:
         function: resolver
-      title: Barak-Project-App
+      title: Barak-Project-App2
 
   function:
     - key: resolver
@@ -17,7 +17,7 @@ resources:
 app:
   runtime:
     name: nodejs22.x
-  id: ari:cloud:ecosystem::app/014b0b32-eee2-431c-b559-1661bd4de503
+  id: ari:cloud:ecosystem::app/26e5ec73-85a8-4102-aa1a-f7f0ab7969bb
 
 permissions:
   scopes:
