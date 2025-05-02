@@ -25,4 +25,4 @@ jobs:
         env:
           FORGE_AUTO_CONFIRM: true
           FORGE_DISABLE_ANALYTICS: true
-        run: forge deploy --non-interactive --token "${{ secrets.FORGE_CLI_AUTH_TOKEN }}"
+        run: forge deploy --non-interactive --token "${{ secrets.FORGE_CLI_AUTH_TOKEN }}" --verbose
