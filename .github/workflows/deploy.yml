@@ -3,10 +3,7 @@ name: Deploy Forge App
 on:
   push:
     branches:
-      - master
-
-env:
-  HOME: /home/runner
+      - main
 
 jobs:
   deploy:
@@ -19,25 +16,17 @@ jobs:
       - name: Install Forge CLI
         run: npm install -g @forge/cli
 
-      - name: Restore Forge credentials
-        run: |
-          mkdir -p ~/.forge
-          echo "${{ secrets.FORGE_CREDENTIALS_BASE64 }}" | base64 --decode > ~/.forge/credentials
-          cat ~/.forge/credentials  # Debug: remove after confirming
-        shell: bash
-
-      - name: Disable Forge analytics
+      - name: Set Forge analytics preference
         run: forge settings set usage-analytics false
         env:
-          FORGE_DISABLE_KEYCHAIN: true
-
-      - name: Check Forge login
-        run: forge whoami
-        env:
+          FORGE_EMAIL: ${{ secrets.FORGE_EMAIL }}
+          FORGE_API_TOKEN: ${{ secrets.FORGE_API_TOKEN }}
           FORGE_DISABLE_KEYCHAIN: true
 
       - name: Deploy Forge app
         run: forge deploy --non-interactive
         env:
+          FORGE_EMAIL: ${{ secrets.FORGE_EMAIL }}
+          FORGE_API_TOKEN: ${{ secrets.FORGE_API_TOKEN }}
           FORGE_DISABLE_KEYCHAIN: true
           FORGE_AUTO_CONFIRM: true
