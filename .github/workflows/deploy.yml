@@ -32,4 +32,7 @@ jobs:
           FORGE_DISABLE_KEYCHAIN: true
 
       - name: Deploy Forge App
+        env:
+          FORGE_AUTO_CONFIRM: true
+          FORGE_DISABLE_KEYCHAIN: true
         run: forge deploy --non-interactive
