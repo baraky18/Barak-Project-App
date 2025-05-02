@@ -25,9 +25,9 @@ jobs:
         env:
           FORGE_AUTO_CONFIRM: true
           FORGE_DISABLE_ANALYTICS: true
-          FORGE_CLI_AUTH_TOKEN: true
-          FORGE_CLI_AUTH_EMAIL: true
-        run: forge login --token "${{ secrets.FORGE_CLI_AUTH_TOKEN }}" --email "${{ secrets.FORGE_CLI_AUTH_EMAIL }}"
+          FORGE_API_TOKEN: true
+          FORGE_EMAIL: true
+        run: forge login --token "${{ secrets.FORGE_API_TOKEN }}" --email "${{ secrets.FORGE_EMAIL }}"
 
       - name: Deploy Forge App
         run: forge deploy --non-interactive
