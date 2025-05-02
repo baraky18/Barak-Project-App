@@ -26,5 +26,8 @@ jobs:
           mkdir -p ~/.forge
           echo "${{ secrets.FORGE_CREDENTIALS_BASE64 }}" | base64 --decode > ~/.forge/credentials
 
+      - name: Set Forge analytics preference
+        run: forge settings set usage-analytics false
+
       - name: Deploy Forge App
         run: forge deploy --non-interactive
