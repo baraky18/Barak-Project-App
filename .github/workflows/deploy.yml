@@ -28,6 +28,11 @@ jobs:
           cat ~/.forge/credentials  # Debug: remove after verifying
         shell: bash
 
+      - name: Disable Forge analytics
+        run: forge settings set usage-analytics false
+        env:
+          FORGE_DISABLE_KEYCHAIN: true
+
       - name: Check Forge login
         run: forge whoami
         env:
