@@ -21,8 +21,11 @@ jobs:
       - name: Install Forge CLI
         run: npm install -g @forge/cli
 
-      - name: Deploy Forge App
+      - name: Authenticate with Forge
         env:
           FORGE_AUTO_CONFIRM: true
           FORGE_DISABLE_ANALYTICS: true
-        run: forge deploy --non-interactive --token "${{ secrets.FORGE_CLI_AUTH_TOKEN }}" --verbose
+        run: forge login --token="${{ secrets.FORGE_CLI_AUTH_TOKEN }}" --verbose
+
+      - name: Deploy Forge App
+        run: forge deploy --non-interactive
