@@ -25,7 +25,10 @@ jobs:
         env:
           FORGE_AUTO_CONFIRM: true
           FORGE_DISABLE_ANALYTICS: true
-        run: forge login --token=ATATT3xFfGF0J4zAIRla1rBv5eElrAsncLjhsCR8Png5ngMQ4d3ZzqCfRhNrcEFdJ5FWs_dnXF1ycbQWcbeE6o1C-Ypq9vPoG2uyBZv2f1I8km2Gg9QNIQpPkoDcVXrMsO0EwltnEX7o_Yo24uh-1El-8D1v8yASgqauGiEC2EWRjhpKFwn-TfI=E4146872 --verbose
+        run: forge login --token= --verbose
+
+      - name: Provide email
+        run: barak.yedaya@gmail.com
 
       - name: Deploy Forge App
         run: forge deploy --non-interactive
