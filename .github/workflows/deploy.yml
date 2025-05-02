@@ -1,9 +1,12 @@
-name: Deploy Forge App to Jira
+name: Deploy Forge App
 
 on:
   push:
     branches:
       - master
+
+env:
+  HOME: /home/runner
 
 jobs:
   deploy:
@@ -13,19 +16,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-
-      - name: Install Forge CLI
-        run: npm install -g @forge/cli
-
       - name: Restore Forge credentials
         run: |
           mkdir -p ~/.forge
           echo "${{ secrets.FORGE_CREDENTIALS_BASE64 }}" | base64 --decode > ~/.forge/credentials
-          cat ~/.forge/credentials  # Debug: remove after verifying
+          cat ~/.forge/credentials  # Debug: remove after confirming
         shell: bash
 
       - name: Disable Forge analytics
@@ -38,8 +33,8 @@ jobs:
         env:
           FORGE_DISABLE_KEYCHAIN: true
 
-      - name: Deploy Forge App
+      - name: Deploy Forge app
         run: forge deploy --non-interactive
         env:
-          FORGE_AUTO_CONFIRM: true
           FORGE_DISABLE_KEYCHAIN: true
+          FORGE_AUTO_CONFIRM: true
