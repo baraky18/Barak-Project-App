@@ -24,15 +24,17 @@ jobs:
       - name: Restore Forge credentials
         run: |
           mkdir -p ~/.forge
-          echo "${{ secrets.FORGE_CREDENTIALS_BASE64 }}" | base64 --decode > ~/.forge/credentials --verbose
+          echo "${{ secrets.FORGE_CREDENTIALS_BASE64 }}" | base64 --decode > ~/.forge/credentials
+          cat ~/.forge/credentials  # Debug: remove after verifying
+        shell: bash
 
-      - name: Set Forge analytics preference
-        run: forge settings set usage-analytics false
+      - name: Check Forge login
+        run: forge whoami
         env:
           FORGE_DISABLE_KEYCHAIN: true
 
       - name: Deploy Forge App
+        run: forge deploy --non-interactive
         env:
           FORGE_AUTO_CONFIRM: true
           FORGE_DISABLE_KEYCHAIN: true
-        run: forge deploy --non-interactive
