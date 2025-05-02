@@ -28,6 +28,8 @@ jobs:
 
       - name: Set Forge analytics preference
         run: forge settings set usage-analytics false
+        env:
+          FORGE_DISABLE_KEYCHAIN: true
 
       - name: Deploy Forge App
         run: forge deploy --non-interactive
