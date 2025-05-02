@@ -23,7 +23,6 @@ jobs:
 
       - name: Authenticate with Forge
         env:
-          FORGE_CLI_AUTH_TOKEN: ${{ secrets.FORGE_CLI_AUTH_TOKEN }}
           FORGE_AUTO_CONFIRM: true
           FORGE_DISABLE_ANALYTICS: true
         run: forge login --token "${{ secrets.FORGE_CLI_AUTH_TOKEN }}" --verbose
