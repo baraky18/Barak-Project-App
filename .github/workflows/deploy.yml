@@ -25,10 +25,7 @@ jobs:
         env:
           FORGE_AUTO_CONFIRM: true
           FORGE_DISABLE_ANALYTICS: true
-        run: forge login --token= --verbose
-
-      - name: Provide email
-        run: barak.yedaya@gmail.com
+        run: forge login --token "${{ secrets.FORGE_CLI_AUTH_TOKEN }}" --email barak.yedaya@gmail.com
 
       - name: Deploy Forge App
         run: forge deploy --non-interactive
