@@ -4,7 +4,7 @@ modules:
       resource: main
       resolver:
         function: resolver
-      title: Barak-Project-App3
+      title: Barak-Project-App4
 
   function:
     - key: resolver
