@@ -16,6 +16,21 @@ jobs:
       - name: Install Forge CLI
         run: npm install -g @forge/cli
 
+      - name: Disable Forge analytics
+        run: forge settings set usage-analytics false
+        env:
+          FORGE_DISABLE_KEYCHAIN: true
+          FORGE_EMAIL: ${{ secrets.FORGE_EMAIL }}
+          FORGE_API_TOKEN: ${{ secrets.FORGE_API_TOKEN }}
+
+      - name: Install backend dependencies
+        run: npm install
+        working-directory: .
+
+      - name: Install frontend dependencies and build
+        run: npm install && npm run build
+        working-directory: static/hello-world
+
       - name: Set Forge analytics preference
         run: forge settings set usage-analytics false
         env:
